@@ -1,0 +1,2 @@
+#include "frmNuevoEstacionTrabajo.h"
+

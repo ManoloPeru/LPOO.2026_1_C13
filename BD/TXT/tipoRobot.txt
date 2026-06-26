@@ -1,0 +1,4 @@
+1;Paralelo
+2;Redundante
+3;AGV
+4;Circular

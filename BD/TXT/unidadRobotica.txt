@@ -1,0 +1,4 @@
+SRV-001;Robot de Soldadura;Paralelo;Operativo;Sección de Soldadura
+SRV-002;Robot de Pintura;Redundante;En Mantenimiento;Sección de Pintura
+SRV-003;Robot de Ensamblaje;AGV;Falla;Sección de Ensamblaje
+SRV-004;Robot de Ensamblaje;Redundante;En Mantenimiento;Sección de Ensamblaje
