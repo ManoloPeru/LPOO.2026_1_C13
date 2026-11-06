@@ -1,4 +1,4 @@
-#include "BaseController.h"
+﻿#include "BaseController.h"
 
 using namespace SGELProdAutomController;
 using namespace System::IO;
@@ -21,7 +21,7 @@ void BaseController::abrirConexion() {
 	
 	/*PUCP*/
 	//this->objConexion->ConnectionString = "Server={IP};DataBase={BD};User id={User};Password={PWD}";
-	
+
 	/*AWS*/
 	//this->objConexion->ConnectionString = "Server={PORT_LINK};DataBase={DB};User id={USR};Password={PWD}";
 	
@@ -45,7 +45,7 @@ int BaseController::insertSql(String^ sSql) {
 	}
 }
 
-// Metodo para ejecutar sentencias UPDATE/DELETE SQL en la Base de Datos, devuelve true si se ejecut� correctamente
+// Metodo para ejecutar sentencias UPDATE/DELETE SQL en la Base de Datos, devuelve true si se ejecutó correctamente
 bool BaseController::executeSql(String^ sSql) {
 	try {
 		abrirConexion();
@@ -67,13 +67,13 @@ void BaseController::cerrarConexion() {
 }
 
 /******************************************************************************************************************************/
-/* METODOS PARA PROCEDIMIENTOS ALMACENADOS (SIN TRANSACCI�N)                                                                   */
+/* METODOS PARA PROCEDIMIENTOS ALMACENADOS (SIN TRANSACCIÓN)                                                                   */
 /******************************************************************************************************************************/
 
 // Metodo para ejecutar procedimientos almacenados (tipo SELECT) que devuelven un SqlDataReader
 SqlDataReader^ BaseController::executeStoredProcedureReader(String^ procedureName, array<SqlParameter^>^ parameters) {
 	//procedureName: Nombre del procedimiento almacenado
-	//parameters: Arreglo de parámetros para el procedimiento almacenado
+	//parameters: Arreglo de parÃ¡metros para el procedimiento almacenado
 	try {
 		abrirConexion();
 		SqlCommand^ comando = gcnew SqlCommand(procedureName, this->getObjConexion());
@@ -86,7 +86,7 @@ SqlDataReader^ BaseController::executeStoredProcedureReader(String^ procedureNam
 		}
 
 		return comando->ExecuteReader();
-		// Nota: La conexión se cierra después de usar el DataReader
+		// Nota: La conexiÃ³n se cierra despuÃ©s de usar el DataReader
 	}
 	catch (Exception^ ex) {
 		Console::WriteLine("Error al ejecutar procedimiento almacenado: " + ex->Message);
@@ -98,13 +98,13 @@ SqlDataReader^ BaseController::executeStoredProcedureReader(String^ procedureNam
 // Metodo para ejecutar procedimientos almacenados (tipo INSERT/UPDATE/DELETE) que no devuelven resultados
 bool BaseController::executeStoredProcedure(String^ procedureName, array<SqlParameter^>^ parameters) {
 	//procedureName: Nombre del procedimiento almacenado
-	//parameters: Arreglo de parámetros para el procedimiento almacenado
+	//parameters: Arreglo de parÃ¡metros para el procedimiento almacenado
 	try {
 		abrirConexion();
 		SqlCommand^ comando = gcnew SqlCommand(procedureName, this->getObjConexion());
 		comando->CommandType = CommandType::StoredProcedure;
 
-		// Agregar parámetros si existen
+		// Agregar parÃ¡metros si existen
 		if (parameters != nullptr) {
 			for each (SqlParameter ^ param in parameters) {
 				comando->Parameters->Add(param);
@@ -122,7 +122,7 @@ bool BaseController::executeStoredProcedure(String^ procedureName, array<SqlPara
 	}
 }
 
-// M�todo para ejecutar procedimientos almacenados que tienen par�metros OUTPUT
+// Método para ejecutar procedimientos almacenados que tienen parámetros OUTPUT
 int BaseController::executeStoredProcedureWithOutput(String^ procedureName, array<SqlParameter^>^ parameters, String^ outputParamName) {
 	try {
 		abrirConexion();
@@ -137,7 +137,7 @@ int BaseController::executeStoredProcedureWithOutput(String^ procedureName, arra
 
 		comando->ExecuteNonQuery();
 
-		// Obtener el valor del par�metro OUTPUT
+		// Obtener el valor del parámetro OUTPUT
 		int outputValue = 0;
 		if (comando->Parameters->Contains(outputParamName)) {
 			Object^ result = comando->Parameters[outputParamName]->Value;
